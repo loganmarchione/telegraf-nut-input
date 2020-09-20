@@ -1,6 +1,6 @@
 # telegraf-nut-input
 
-Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends the results to InfluxDB
+Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends the results to InfluxDB via Telegraf. This is a modified version of [this repo](https://github.com/spidertyler2005/ups-telegraf/tree/patch-1)
 
 ## Explanation
 
@@ -16,7 +16,7 @@ Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends th
 
 ### Example usage
 
-Below is an example of manually running the script, and he output it generates.
+Below is an example of manually running the script, and the output it generates.
 ```
 root@test04:~# python3 input.py cyberpower1@localhost
 ups,ups_name=cyberpower1 battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.mfr.date="CPS",battery.runtime=7140,battery.runtime.low=300,battery.type="PbAcid",battery.voltage=24.0,battery.voltage.nominal=24,device.mfr="CPS",device.model="CP1500PFCLCD",device.serial=000000000000,device.type="ups",driver.name="usbhid-ups",driver.parameter.pollfreq=30,driver.parameter.pollinterval=15,driver.parameter.port="auto",driver.parameter.synchronous="no",driver.version="2.7.4",driver.version.data="CyberPower HID 0.4",driver.version.internal=0.41,input.transfer.high=139,input.transfer.low=88,input.voltage=120.0,input.voltage.nominal=120,output.voltage=136.0,ups.beeper.status="disabled",ups.delay.shutdown=20,ups.delay.start=30,ups.load=5,ups.mfr="CPS",ups.model="CP1500PFCLCD",ups.productid=0501,ups.realpower.nominal=900,ups.serial=000000000000,ups.status="OL",ups.test.result="No test initiated",ups.timer.shutdown=-60,ups.timer.start=-60,ups.vendorid=0764
