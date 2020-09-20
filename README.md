@@ -56,6 +56,9 @@ Below is an example `telegraf.conf` file to output the data to InfluxDB.
    data_format = "influx"
 ```
 
+Below is an example of the kinds of data you can graph (this is Grafana).
+![Screenshot](https://github.com/loganmarchione/telegraf-nut-input/raw/master/grafana.png)
+
 ## TODO
 - [ ] Find a more elegant way to transform raw `upsc` output into key/value pairs
 - [ ] Make a list of specific values to look for (I'm currently sending every value from `upsc` to Telegraf)
