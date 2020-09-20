@@ -4,10 +4,9 @@ Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends th
 
 ## Explanation
 
-  - This is a Python3 script that gets data from NUT, via the `upsc` command, then writes that data to standard output.
-  - The output is in Influx's [line protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_reference/#) format.
-  - This script is meant to run via Telegraf, which then writes the data to an InfluxDB database (you can later graph this data with Grafana or Chronograf).
-  - No user data (ups names, usernames, passwords, database connections, etc...) is stored in the Python script. Everything is setup in the `telegraf.conf` file.
+  - This is a Python3 script that gets data from NUT, via the `upsc` command, then writes that data to standard output. The output is in InfluxDB's [line protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_reference/#) format.
+  - This script is meant to run via Telegraf, which then writes the data to InfluxDB (you can later graph this data with Grafana or Chronograf).
+  - No user data (UPS names, usernames, passwords, database connections, etc...) is stored in the Python script. Everything is setup in the `telegraf.conf` file.
 
 ## Requirements
 
