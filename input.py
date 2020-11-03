@@ -5,7 +5,12 @@ import sys
 
 final=""
 
-# Set the UPS name (from an argument) and host
+# If an argument isn't supplied, exit
+if len(sys.argv) <= 1:
+    print('Please include a valid NUT UPS name\nExample: input.py ups_name@localhost')
+    exit(1)
+
+# Set the UPS name from an argument and host
 full_name = sys.argv[1]
 ups_name=full_name.split('@')[0]
 

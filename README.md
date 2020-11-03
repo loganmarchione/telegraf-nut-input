@@ -63,3 +63,5 @@ Below is an example of the kinds of data you can graph (this is Grafana).
 - [ ] Find a more elegant way to transform raw `upsc` output into key/value pairs
 - [ ] Make a list of specific values to look for (I'm currently sending every value from `upsc` to Telegraf)
 - [ ] Keep watching [this issue](https://github.com/influxdata/telegraf/issues/6316), which would be a more ideal way to get data from NUT
+- [ ] Add linting with Travis CI
+- [ ] Make the Python script fail if there isn't an argument
