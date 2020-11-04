@@ -4,7 +4,7 @@ language: python
 jobs:
   include:
     - stage: Lint
-    - name: "Lint Python 3.6"
+      name: "Lint Python 3.6"
       python:
         - 3.6
       before_install:
