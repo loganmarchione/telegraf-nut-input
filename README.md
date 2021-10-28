@@ -1,5 +1,7 @@
 # telegraf-nut-input
 
+[![CI](https://github.com/loganmarchione/telegraf-nut-input/actions/workflows/main.yml/badge.svg)](https://github.com/loganmarchione/telegraf-nut-input/actions/workflows/main.yml)
+
 Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends the results to InfluxDB via Telegraf. This is a modified version of [this repo](https://github.com/spidertyler2005/ups-telegraf/tree/patch-1).
 
 ## Explanation
