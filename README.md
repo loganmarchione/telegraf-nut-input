@@ -13,7 +13,10 @@ Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends th
 ## Requirements
 
   - You must already have a working instance of NUT, with Telegraf installed on the same machine.
-  - You must already have an InfluxDB database created, along with a user that has `WRITE` and `READ` permissions on that database.
+  - InfluxDB v1
+    - You must already have an InfluxDB database and a user that has `WRITE` permissions on that database.
+  - InfluxDB v2
+    - You must already have an org, bucket, and API token with write access to that bucket.
   - Telegraf needs to be able to reach that InfluxDB instance by hostname or IP address.
 
 ### Example usage
@@ -24,7 +27,7 @@ root@test04:~# python3 input.py cyberpower1@localhost
 ups,ups_name=cyberpower1 battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.mfr.date="CPS",battery.runtime=7140,battery.runtime.low=300,battery.type="PbAcid",battery.voltage=24.0,battery.voltage.nominal=24,device.mfr="CPS",device.model="CP1500PFCLCD",device.serial=000000000000,device.type="ups",driver.name="usbhid-ups",driver.parameter.pollfreq=30,driver.parameter.pollinterval=15,driver.parameter.port="auto",driver.parameter.synchronous="no",driver.version="2.7.4",driver.version.data="CyberPower HID 0.4",driver.version.internal=0.41,input.transfer.high=139,input.transfer.low=88,input.voltage=120.0,input.voltage.nominal=120,output.voltage=136.0,ups.beeper.status="disabled",ups.delay.shutdown=20,ups.delay.start=30,ups.load=5,ups.mfr="CPS",ups.model="CP1500PFCLCD",ups.productid=0501,ups.realpower.nominal=900,ups.serial=000000000000,ups.status="OL",ups.test.result="No test initiated",ups.timer.shutdown=-60,ups.timer.start=-60,ups.vendorid=0764
 ```
 
-Below is an example `telegraf.conf` file to output the data to InfluxDB.
+Below is an example `telegraf.conf` file to output the data to InfluxDB v1.8 and lower (using username/password) and InfluxDB v2.0 and higher (using API token).
 ```
 ###############################################################################
 #                            OUTPUT PLUGINS                                   #
@@ -43,6 +46,17 @@ Below is an example `telegraf.conf` file to output the data to InfluxDB.
 
   username = "username_goes_here"
   password = "password_goes_here"
+
+[[outputs.influxdb_v2]]
+  urls = ["http://server_name_or_IP:8086"]
+
+  token = "token_goes_here"
+
+  organization = "org_goes_here"
+
+  bucket = "bucket_goes_here"
+
+  timeout = "5s"
 
 ###############################################################################
 #                            INPUT PLUGINS                                    #
