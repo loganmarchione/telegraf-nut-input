@@ -19,17 +19,27 @@ data = subprocess.run(["upsc", full_name], stdout=subprocess.PIPE, stderr=subpro
 
 # For each line in the standard output
 for line in data.stdout.splitlines():
-    # Replace ": " with a ":", then separate based on the colon
+    # Replace ": " with a ":", then separate based on the colon (example below)
+    # battery.type: PbAc
+    # ^^key^^       ^^value^^
     line = line.replace(': ', ':')
     key = line.split(':')[0]
     value = line.split(':')[1]
 
-    try:
-        # If the value is a float, ok
-        float(value)
-    except ValueError:
-        # If the value is not a float (i.e., a string), then wrap it in quotes (this is needed for Influx's line protocol)
+    # Different manufacturers use different values (floats vs strings) for specific fields
+    # Matches device.serial, ups.serial, and ups.vendorid
+    matches = [".serial", ".vendorid"]
+
+    # First, check for any keys containing strings from above and set those values to strings
+    if any(x in key for x in matches):
         value = f'"{value}"'
+    else:
+        try:
+            # If the value is a float, ok
+            float(value)
+        except ValueError:
+            # If the value is not a float (i.e., a string), then wrap it in quotes (this is needed for Influx's line protocol)
+            value = f'"{value}"'
 
     # Create a single data point, then append that data point to the string
     data_point = f"{key}={value},"
