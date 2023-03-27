@@ -15,7 +15,7 @@ full_name = sys.argv[1]
 ups_name = full_name.split('@')[0]
 
 # Get the data from upsc
-data = subprocess.run(["upsc", full_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+data = subprocess.run(["/usr/bin/upsc", full_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
 
 # For each line in the standard output
 for line in data.stdout.splitlines():
