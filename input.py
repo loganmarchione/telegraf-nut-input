@@ -44,7 +44,7 @@ for line in data.stdout.splitlines():
         # Wrap specific values in quotes
         value = f'"{value}"'
     else:
-         # If it's a float, leave it be
+        # If it's a float, leave it be
         try:
             float(value)
         # If the value is not a float (i.e., a string), then wrap it in quotes
