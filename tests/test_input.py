@@ -75,9 +75,9 @@ def test_format_to_influxdb():
     assert result == EXPECTED_OUTPUT
 
 # other tests to add later
-    # get_upsc_data function
-    # main function with no args
-    # main function
+# get_upsc_data function
+# main function with no args
+# main function
 
 if __name__ == "__main__":
     pytest.main(["-v", __file__])
