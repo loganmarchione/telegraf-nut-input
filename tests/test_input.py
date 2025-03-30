@@ -74,6 +74,7 @@ def test_format_to_influxdb():
     # Verify the function returns the expected output
     assert result == EXPECTED_OUTPUT
 
+
 # other tests to add later
 # get_upsc_data function
 # main function with no args
