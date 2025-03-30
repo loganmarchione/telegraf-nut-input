@@ -72,7 +72,7 @@ def test_format_to_influxdb():
     print("\nExpected output:\n", EXPECTED_OUTPUT)
 
     # Verify the function returns the expected output
-    assert result == EXPECTED_OUTPUT
+    assert result == EXPECTED_OUTPUT  # nosec B101
 
 
 # other tests to add later
