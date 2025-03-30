@@ -79,9 +79,13 @@ Below is an example of the kinds of data you can graph (this is Grafana).
 ### Development
 
 ```
+# virtual environment
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements*.txt
 
+# update code
+
+# run checks
 make check
 ```
