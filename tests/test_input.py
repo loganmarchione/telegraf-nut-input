@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import importlib.util
+
 import pytest
 
 # Import the input.py module directly
@@ -10,6 +11,7 @@ input_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(input_module)
 
 # Sample mock UPS output
+# "Init SSL without certificate database" is actually part of the output
 MOCK_UPSC_OUTPUT = """Init SSL without certificate database
 battery.charge: 100
 battery.charge.low: 10
