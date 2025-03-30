@@ -25,7 +25,7 @@ def get_upsc_data(full_name: str) -> str:
             stderr=subprocess.PIPE,
             shell=False,
             text=True,
-            check=True
+            check=True,
         )  # nosec B603
         return result.stdout
     except subprocess.CalledProcessError as e:
@@ -91,12 +91,12 @@ def main() -> int:
     """
     # If an argument isn't supplied, exit
     if len(sys.argv) <= 1:
-        print('ERROR: Please include a valid NUT UPS name (example: input.py ups_name@localhost)')
+        print("ERROR: Please include a valid NUT UPS name (e.g., ups_name@localhost)")
         return 1
 
     # Set the UPS name from an argument
     full_name = sys.argv[1]
-    ups_name = full_name.split('@')[0]
+    ups_name = full_name.split("@")[0]
 
     try:
         # Get data from upsc
