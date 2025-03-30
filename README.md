@@ -23,8 +23,8 @@ Gets data from [Network UPS Tools (NUT)](https://networkupstools.org/), sends th
 
 Below is an example of manually running the script, and the output it generates.
 ```
-root@test04:~# python3 input.py cyberpower1@localhost
-ups,ups_name=cyberpower1 battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.mfr.date="CPS",battery.runtime=7140,battery.runtime.low=300,battery.type="PbAcid",battery.voltage=24.0,battery.voltage.nominal=24,device.mfr="CPS",device.model="CP1500PFCLCD",device.serial=000000000000,device.type="ups",driver.name="usbhid-ups",driver.parameter.pollfreq=30,driver.parameter.pollinterval=15,driver.parameter.port="auto",driver.parameter.synchronous="no",driver.version="2.7.4",driver.version.data="CyberPower HID 0.4",driver.version.internal=0.41,input.transfer.high=139,input.transfer.low=88,input.voltage=120.0,input.voltage.nominal=120,output.voltage=136.0,ups.beeper.status="disabled",ups.delay.shutdown=20,ups.delay.start=30,ups.load=5,ups.mfr="CPS",ups.model="CP1500PFCLCD",ups.productid=0501,ups.realpower.nominal=900,ups.serial=000000000000,ups.status="OL",ups.test.result="No test initiated",ups.timer.shutdown=-60,ups.timer.start=-60,ups.vendorid=0764
+root@nut01:~# python3 input.py apc1@localhost
+ups,ups_name=apc1 battery.charge=100,battery.charge.low=10,battery.charge.warning=50,battery.date="2001/09/25",battery.mfr.date="2021/08/14",battery.runtime=4860,battery.runtime.low=120,battery.type="PbAc",battery.voltage=27.3,battery.voltage.nominal=24.0,device.mfr="American Power Conversion",device.model="Back-UPS RS 1500MS2",device.serial="ABCDEFG12345",device.type="ups",driver.name="usbhid-ups",driver.parameter.pollfreq=30,driver.parameter.pollinterval=15,driver.parameter.port="auto",driver.parameter.synchronous="auto",driver.version="2.8.0",driver.version.data="APC HID 0.98",driver.version.internal=0.47,driver.version.usb="libusb-1.0.26 (API: 0x1000109)",input.sensitivity="medium",input.transfer.high=144,input.transfer.low=88,input.voltage=122.0,input.voltage.nominal=120,ups.beeper.status="disabled",ups.delay.shutdown=20,ups.firmware="969.e2 .D",ups.firmware.aux="e2",ups.load=9,ups.mfr="American Power Conversion",ups.mfr.date="2021/08/14",ups.model="Back-UPS RS 1500MS2",ups.productid=0002,ups.realpower.nominal=900,ups.serial="ABCDEFG12345",ups.status="OL",ups.test.result="No test initiated",ups.timer.reboot=0,ups.timer.shutdown=-1,ups.vendorid="051d"
 ```
 
 Below is an example `telegraf.conf` file to output the data to InfluxDB v1.8 and lower (using username/password) and InfluxDB v2.0 and higher (using API token).
@@ -64,7 +64,7 @@ Below is an example `telegraf.conf` file to output the data to InfluxDB v1.8 and
 
  [[inputs.exec]]
    commands = [
-     "python3 /custom/scripts/telegraf-nut-input/input.py cyberpower1@localhost"
+     "python3 /custom/scripts/telegraf-nut-input/input.py apc1@localhost"
    ]
 
    timeout = "5s"
@@ -73,11 +73,15 @@ Below is an example `telegraf.conf` file to output the data to InfluxDB v1.8 and
 ```
 
 Below is an example of the kinds of data you can graph (this is Grafana).
+
 ![Screenshot](https://github.com/loganmarchione/telegraf-nut-input/raw/master/grafana.png)
 
-## TODO
-- [ ] Find a more elegant way to transform raw `upsc` output into key/value pairs
-- [ ] Make a list of specific values to look for (I'm currently sending every value from `upsc` to Telegraf)
-- [ ] Keep watching [this issue](https://github.com/influxdata/telegraf/issues/6316), which would be a more ideal way to get data from NUT
-- [x] Add linting with Travis CI
-- [x] Make the Python script fail if there isn't an argument
+### Development
+
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements*.txt
+
+make check
+```
