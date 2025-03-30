@@ -37,6 +37,9 @@ jobs:
     - name: Run linting
       run: make lint
 
+    - name: Run security check
+      run: make security
+
   tests:
     name: Tests
 
