@@ -8,5 +8,18 @@
   "dependencyDashboardTitle": "Renovate Dashboard",
   "labels": [
     "renovatebot"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    }
   ]
 }
