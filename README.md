@@ -76,13 +76,13 @@ Below is an example of the kinds of data you can graph (this is Grafana).
 
 ![Screenshot](https://github.com/loganmarchione/telegraf-nut-input/raw/master/grafana.png)
 
-### Development
+## Development
 
 ```
 # virtual environment
 python3 -m venv venv
 source venv/bin/activate
-pip3 install -r requirements*.txt
+pip3 install -r requirements-dev.txt
 
 # update code
 
