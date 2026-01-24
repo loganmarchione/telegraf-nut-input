@@ -1,0 +1,4 @@
+[bandit]
+exclude = venv,./venv
+# https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+skips = B101

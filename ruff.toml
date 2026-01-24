@@ -1,0 +1,25 @@
+# Exclude common directories
+extend-exclude = [
+    "venv",
+    ".venv",
+    "env",
+    ".env",
+    "__pycache__",
+    ".pytest_cache",
+]
+
+[lint]
+# Enable pycodestyle (E), pyflakes (F), isort (I)
+select = ["E", "F", "I"]
+
+# Ignore line length (E501) - https://docs.astral.sh/ruff/rules/line-too-long/
+ignore = ["E501"]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+
+[format]
+# Use black-compatible formatting
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"

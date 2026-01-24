@@ -1,32 +1,37 @@
-.PHONY: lint security test
+.PHONY: lint format security test
 
 lint:
 	@echo "################################################################################"
-	@echo "# flake8"
+	@echo "# ruff check"
 	@echo "################################################################################"
-	# https://www.flake8rules.com/rules/E501.html
-	flake8 --extend-ignore=E501 input.py
+	ruff check --diff input.py tests
 
 	@echo "################################################################################"
-	@echo "# isort"
+	@echo "# ruff format check"
 	@echo "################################################################################"
-	isort --check-only . --diff
+	ruff format --check --diff input.py tests
+
+format:
+	@echo "################################################################################"
+	@echo "# ruff check --fix"
+	@echo "################################################################################"
+	ruff check --fix input.py tests
 
 	@echo "################################################################################"
-	@echo "# black"
+	@echo "# ruff format"
 	@echo "################################################################################"
-	black --check --diff .
+	ruff format input.py tests
 
 security:
 	@echo "################################################################################"
 	@echo "# bandit"
 	@echo "################################################################################"
-	bandit -r --exclude /venv .
+	bandit -r .
 
 test:
 	@echo "################################################################################"
 	@echo "# tests"
 	@echo "################################################################################"
-	pytest tests/
+	PYTHONPATH=. pytest tests/ -s -v
 
 check: lint security test
